@@ -19,6 +19,7 @@ export class SubjectService {
   async list() {
     return await this.subjectRepository.find({
       relations: ["grades"],
+      order: { name: "ASC" }
     });
   }
 

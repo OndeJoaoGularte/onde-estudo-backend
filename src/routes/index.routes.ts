@@ -5,6 +5,7 @@ import { UnitController } from "../controllers/content/UnitController";
 import { LessonController } from "../controllers/content/LessonController";
 import { AuthController } from "../controllers/user/AuthController";
 import { authMiddleware } from "../middlewares/authMiddleware";
+import { AdminController } from "../controllers/admin/AdminController";
 
 const routes = Router();
 
@@ -13,10 +14,14 @@ const gradeController = new GradeController();
 const unitController = new UnitController();
 const lessonController = new LessonController();
 const authController = new AuthController();
+const adminController = new AdminController();
 
 // Autenticação
 routes.post("/register", (req, res) => authController.register(req, res));
 routes.post("/login", (req, res) => authController.login(req, res));
+
+// Admin Dashboard
+routes.get("/admin/stats", authMiddleware, (req, res) => adminController.getStats(req, res));
 
 // Matérias
 routes.post("/subjects", authMiddleware, (req, res) => subjectController.create(req, res));
