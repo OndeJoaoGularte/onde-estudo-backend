@@ -26,6 +26,18 @@ export class SubjectController {
     }
   }
 
+  // GET BY ID
+  async getById(req: Request, res: Response) {
+    try {
+      const id = req.params.id as string;
+      const subject = await this.subjectService.getById(id);
+      
+      return res.status(200).json(subject);
+    } catch (error: any) {
+      return res.status(404).json({ error: error.message });
+    }
+  }
+
   // PUT
   async update(req: Request, res: Response) {
     try {

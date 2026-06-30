@@ -26,6 +26,7 @@ routes.get("/admin/stats", authMiddleware, (req, res) => adminController.getStat
 // Matérias
 routes.post("/subjects", authMiddleware, (req, res) => subjectController.create(req, res));
 routes.get("/subjects", (req, res) => subjectController.list(req, res));
+routes.get("/subjects/:id", (req, res) => subjectController.getById(req, res));
 routes.put("/subjects/:id", authMiddleware, (req, res) => subjectController.update(req, res));
 routes.delete("/subjects/:id", authMiddleware, (req, res) => subjectController.delete(req, res));
 

@@ -23,6 +23,25 @@ export class SubjectService {
     });
   }
 
+  // GET BY ID
+  async getById(id: string) {
+    const subject = await this.subjectRepository.findOne({
+      where: { id },
+      relations: ["grades"],
+      order: {
+        grades: {
+          orderIndex: "ASC"
+        }
+      }
+    });
+
+    if (!subject) {
+      throw new Error("Erro ao buscar matéria: Matéria não encontrada.");
+    }
+
+    return subject;
+  }
+
   // PUT
   async update(id: string, data: Partial<Subject>) {
     const subject = await this.subjectRepository.findOneBy({ id });
