@@ -71,7 +71,31 @@ export class LessonService {
         "feedbacks",
         "contentBlocks.questions",
       ],
+      order: { orderIndex: "ASC" }
     });
+  }
+
+  // GET BY ID
+  async getById(id: string) {
+    const lesson = await this.lessonRepository.findOne({
+      where: { id },
+      relations: [
+        "unit",
+        "contentBlocks", 
+        "feedbacks",
+      ],
+      order: {
+        contentBlocks: {
+          orderIndex: "ASC"
+        }
+      }
+    });
+
+    if (!lesson) {
+      throw new Error("Erro ao buscar aula: Aula não encontrada.");
+    }
+
+    return lesson;
   }
 
   // PUT

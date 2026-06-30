@@ -33,6 +33,25 @@ export class GradeService {
     });
   }
 
+  // GET BY ID
+  async getById(id: string) {
+    const grade = await this.gradeRepository.findOne({
+      where: { id },
+      relations: ["subject", "units", "units.lessons"],
+      order: {
+        units: {
+          orderIndex: "ASC"
+        }
+      }
+    });
+
+    if (!grade) {
+      throw new Error("Erro ao buscar série: Série não encontrada.");
+    }
+
+    return grade;
+  }
+
   // PUT
   async update(id: string, data: Partial<Grade>) {
     const grade = await this.gradeRepository.findOneBy({ id });

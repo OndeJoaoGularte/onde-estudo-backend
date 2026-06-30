@@ -33,18 +33,21 @@ routes.delete("/subjects/:id", authMiddleware, (req, res) => subjectController.d
 // Séries
 routes.post("/grades", authMiddleware, (req, res) => gradeController.create(req, res));
 routes.get("/grades", (req, res) => gradeController.list(req, res));
+routes.get("/grades/:id", (req, res) => gradeController.getById(req, res));
 routes.put("/grades/:id", authMiddleware, (req, res) => gradeController.update(req, res));
 routes.delete("/grades/:id", authMiddleware, (req, res) => gradeController.delete(req, res));
 
 // Unidades
 routes.post("/units", authMiddleware, (req, res) => unitController.create(req, res));
 routes.get("/units", (req, res) => unitController.list(req, res));
+routes.get("/units/:id", (req, res) => unitController.getById(req, res));
 routes.put("/units/:id", authMiddleware, (req, res) => unitController.update(req, res));
 routes.delete("/units/:id", authMiddleware, (req, res) => unitController.delete(req, res));
 
 // Aulas
 routes.post("/lessons", authMiddleware, (req, res) => lessonController.create(req, res));
 routes.get("/lessons", (req, res) => lessonController.list(req, res));
+routes.get("/lessons/:id", (req, res) => lessonController.getById(req, res));
 routes.put("/lessons/:id", authMiddleware, (req, res) => lessonController.update(req, res));
 routes.delete("/lessons/:id", authMiddleware, (req, res) => lessonController.delete(req, res));
 

@@ -26,6 +26,18 @@ export class GradeController {
     }
   }
 
+  // GET BY ID
+  async getById(req: Request, res: Response) {
+    try {
+      const id = req.params.id as string;
+      const grade = await this.gradeService.getById(id);
+      
+      return res.status(200).json(grade);
+    } catch (error: any) {
+      return res.status(404).json({ error: error.message });
+    }
+  }
+
   // PUT
   async update(req: Request, res: Response) {
     try {

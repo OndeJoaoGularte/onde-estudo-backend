@@ -28,7 +28,27 @@ export class UnitService {
   async list() {
     return await this.unitRepository.find({
       relations: ["grade", "lessons"],
+      order: { orderIndex: "ASC" } // Para a lista do Dashboard ficar arrumada
     });
+  }
+
+  // GET BY ID
+  async getById(id: string) {
+    const unit = await this.unitRepository.findOne({
+      where: { id },
+      relations: ["grade", "lessons", "lessons.contentBlocks"],
+      order: {
+        lessons: {
+          orderIndex: "ASC"
+        }
+      }
+    });
+
+    if (!unit) {
+      throw new Error("Erro ao buscar unidade: Unidade não encontrada.");
+    }
+
+    return unit;
   }
 
   // PUT
