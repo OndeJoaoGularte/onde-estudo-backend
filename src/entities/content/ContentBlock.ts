@@ -22,6 +22,9 @@ export abstract class ContentBlock {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
+  @Column({ type: "varchar" })
+  type: string;
+
   @ManyToOne(() => Lesson, (lesson) => lesson.contentBlocks, {
     onDelete: "CASCADE",
   })
