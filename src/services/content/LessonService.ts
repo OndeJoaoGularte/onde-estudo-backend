@@ -67,6 +67,8 @@ export class LessonService {
     return await this.lessonRepository.find({
       relations: [
         "unit",
+        "unit.grade",
+        "unit.grade.subject",
         "contentBlocks",
         "feedbacks",
         "contentBlocks.questions",
@@ -81,6 +83,8 @@ export class LessonService {
       where: { id },
       relations: [
         "unit",
+        "unit.grade",
+        "unit.grade.subject",
         "contentBlocks", 
         "feedbacks",
       ],

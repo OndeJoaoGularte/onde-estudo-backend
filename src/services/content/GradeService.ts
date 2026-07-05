@@ -28,7 +28,7 @@ export class GradeService {
   // GET
   async list() {
     return await this.gradeRepository.find({
-      relations: ["subject", "units"],
+      relations: ["subject", "units", "units.lessons"],
       order: { orderIndex: "ASC" }
     });
   }

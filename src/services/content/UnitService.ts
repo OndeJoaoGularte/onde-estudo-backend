@@ -36,7 +36,7 @@ export class UnitService {
   async getById(id: string) {
     const unit = await this.unitRepository.findOne({
       where: { id },
-      relations: ["grade", "lessons", "lessons.contentBlocks"],
+      relations: ["grade", "grade.subject", "lessons", "lessons.contentBlocks"],
       order: {
         lessons: {
           orderIndex: "ASC"

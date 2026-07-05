@@ -18,7 +18,7 @@ export class SubjectService {
   // GET
   async list() {
     return await this.subjectRepository.find({
-      relations: ["grades"],
+      relations: ["grades", "grades.units", "grades.units.lessons"],
       order: { name: "ASC" }
     });
   }
@@ -27,7 +27,7 @@ export class SubjectService {
   async getById(id: string) {
     const subject = await this.subjectRepository.findOne({
       where: { id },
-      relations: ["grades"],
+      relations: ["grades", "grades.units", "grades.units.lessons"],
       order: {
         grades: {
           orderIndex: "ASC"
